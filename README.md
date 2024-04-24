@@ -1,4 +1,4 @@
-![image](https://github.com/TerrniTLLC/dotfiles/assets/104818206/d869ccfc-e7d5-4bad-ac95-ab52084fc175)# terrnit's dotfiles
+# terrnit's dotfiles
 
 ## Blueprint
 ![image](https://github.com/TerrniTLLC/dotfiles/assets/104818206/8d980341-d284-4c77-b914-2dc84e480629)
@@ -21,13 +21,10 @@
 
 lazy with extra features:
 
-- [x] Supertab(VS Code like)
-- [x] AI-Powered Autocomplete(Copilot)
+- [ ] AI-Powered Autocomplete(Copilot / Codeium)
 - [x] Good Looking Theme([vitesse](https://github.com/2nthony/vitesse.nvim))
-- [x] Transparent friendly
-- [x] Git Integration(LazyGit)
-- [x] Vue supported([vue.lua](.config/nvim/lua/plugins/extras/lang/vue.lua))
-- [x] Partially support vscode workspace settings
+- [ ] Git Integration(LazyGit)
+- [ ] Vue supported([vue.lua](.config/nvim/lua/plugins/extras/lang/vue.lua))
 
 ### Setup
 
