@@ -6,16 +6,16 @@
 ## Content tree
 - Dotfiles
   - Common
-    - VSCode
-    - Hyper
+    1. VSCode
+    2. Hyper
   - Linux
-    - Nvim (Lazyvim)
-    - Tmux
-    - Helix
-    - Zelliji
+    1. Nvim (Lazyvim)
+    2. Tmux
+    3. Helix
+    4. Zelliji
   - Windows
-    - Powershell
-    - Wezterm
+    1. Powershell
+    2. Wezterm
 
 ## [💤 LazyVim](https://lazyvim.org) ![](https://img.shields.io/badge/-0.9.x-29BC9B)
 
