@@ -1,4 +1,5 @@
 # terrnit's dotfiles
+![image](https://github.com/TerrniTLLC/dotfiles/assets/104818206/8d980341-d284-4c77-b914-2dc84e480629)
 
 ## [💤 LazyVim](https://lazyvim.org) ![](https://img.shields.io/badge/-0.9.x-29BC9B)
 
