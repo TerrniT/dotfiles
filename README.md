@@ -1,5 +1,21 @@
-# terrnit's dotfiles
+![image](https://github.com/TerrniTLLC/dotfiles/assets/104818206/d869ccfc-e7d5-4bad-ac95-ab52084fc175)# terrnit's dotfiles
+
+## Blueprint
 ![image](https://github.com/TerrniTLLC/dotfiles/assets/104818206/8d980341-d284-4c77-b914-2dc84e480629)
+
+## Content tree
+- Dotfiles
+  - Common
+    - VSCode
+    - Hyper
+  - Linux
+    - Nvim (Lazyvim)
+    - Tmux
+    - Helix
+    - Zelliji
+  - Windows
+    - Powershell
+    - Wezterm
 
 ## [💤 LazyVim](https://lazyvim.org) ![](https://img.shields.io/badge/-0.9.x-29BC9B)
 
