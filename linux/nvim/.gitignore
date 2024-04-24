@@ -1,0 +1,12 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+
+# private plugins
+/lua/private.lua
+/lua/private/**/*.lua
