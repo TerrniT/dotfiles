@@ -17,6 +17,16 @@
     1. Powershell
     2. Wezterm
 
+## My utils 
+- exa
+- svn
+- forgit
+- lazygit
+- lazydocker
+- nvm
+- zoxide
+- fzf
+
 ## [💤 LazyVim](https://lazyvim.org) ![](https://img.shields.io/badge/-0.9.x-29BC9B)
 
 lazy with extra features:
