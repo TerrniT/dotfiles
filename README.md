@@ -18,7 +18,7 @@
     2. Wezterm
 
 ## My utils 
-- [exa](https://github.com/ogham/exa)
+- [exa](https://github.com/eza-community/eza)
 - [forgit](https://github.com/wfxr/forgit)
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [lazydocker](https://github.com/jesseduffield/lazydocker)
