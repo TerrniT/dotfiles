@@ -18,14 +18,13 @@
     2. Wezterm
 
 ## My utils 
-- exa
-- svn
-- forgit
-- lazygit
-- lazydocker
-- nvm
-- zoxide
-- fzf
+- [exa](https://github.com/ogham/exa)
+- [forgit](https://github.com/wfxr/forgit)
+- [lazygit](https://github.com/jesseduffield/lazygit)
+- [lazydocker](https://github.com/jesseduffield/lazydocker)
+- [nvm](https://github.com/nvm-sh/nvm)
+- [zoxide](https://github.com/ajeetdsouza/zoxide)
+- [fzf](https://github.com/junegunn/fzf)
 
 ## [💤 LazyVim](https://lazyvim.org) ![](https://img.shields.io/badge/-0.9.x-29BC9B)
 
