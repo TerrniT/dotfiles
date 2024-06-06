@@ -25,6 +25,9 @@
 - [nvm](https://github.com/nvm-sh/nvm)
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
 - [fzf](https://github.com/junegunn/fzf)
+- [bashtop](https://github.com/aristocratos/bashtop)
+## Apps
+- [portmaster](https://github.com/safing/portmaster)
 
 ## [💤 LazyVim](https://lazyvim.org) ![](https://img.shields.io/badge/-0.9.x-29BC9B)
 
