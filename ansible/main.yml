@@ -1,0 +1,104 @@
+- hosts: localhost 
+  vars:
+    home_dir: "{{ ansible_env.HOME }}" 
+    dotfiles_dir: "{{ playbook_dir }}/.."
+    modules_dir: '{{ ansible_env.HOME }}/plugins/modules'
+    common:
+      # - bash-completion
+      - docker
+      - tmux
+      # - git
+      # - tree
+      # - watch
+      # - wget
+      # - zsh
+  tasks:
+  - name: Create ansible directory
+    file: path={{ modules_dir }} state=directory
+  - name: Symlink ansible hosts
+    file:
+      src: '{{ playbook_dir }}/hosts'
+      dest: '{{ home_dir }}/hosts'
+      state: link
+      force: yes
+
+  - name: Check if Docker is installed
+    ansible.builtin.command: which docker
+    register: docker_installed
+    changed_when: false
+    failed_when: false
+
+  - name: Display a message if Docker is not installed
+    ansible.builtin.debug:
+      msg: "Docker is not installed on this system."
+    when: docker_installed.rc != 0
+
+  - name: Download docker shell script from get.docker.com
+    when: docker_installed.rc != 0
+    ansible.builtin.shell: 
+      cmd: curl -fsSL https://get.docker.com -o get-docker.sh
+    args:
+      chdir: temp/
+      creates: get-docker.sh
+
+  - name: Run get-docker.sh
+    when: docker_installed.rc != 0
+    ansible.builtin.shell: sh get-docker.sh
+    args:
+      chdir: temp/
+
+  - name: Setup usermod and groupadd docker
+    when: docker_installed.rc != 0
+    ansible.builtin.shell: 
+      cmd: sudo usermod -aG docker $USER && sudo rm get-docker.sh
+    args:
+      chdir: temp/
+
+  - name: Check if tmux is installed
+    ansible.builtin.command: which tmux
+    register: tmux_installed
+    changed_when: false
+    failed_when: false
+
+  - name: Display a message if Tmux is not installed
+    ansible.builtin.debug:
+      msg: "Tmux is not installed on this system."
+    when: tmux_installed.rc != 0
+
+  - name: Installing tmux
+    package:
+      name: tmux
+      state: present
+    tags: tmux
+    when: tmux_installed.rc != 0
+
+  - name: Check if TMP is installed
+    stat:
+      path: /home/terrnit/.tmux/plugins/tpm
+    register: tmp_installed
+
+  - name: Display a message if TMP is not installed
+    ansible.builtin.debug:
+      msg: "TMP is not installed on this system."
+    when: not tmp_installed.stat.exists
+
+  - name: Clone TPM repository
+    git:
+      repo: 'https://github.com/tmux-plugins/tpm.git'
+      dest: /home/terrnit/.tmux/plugins/tpm
+    become: true
+    become_user: terrnit
+    tags: tmux
+    when: not tmp_installed.stat.exists
+  # - name: Delete docker from machine
+  #   ansible.builtin.shell: | 
+  #     dpkg -l | grep -i docker &&
+  #     sudo rm -rf /var/lib/docker /etc/docker &&
+  #     sudo rm -rf /var/run/docker.sock &&
+  #     sudo rm -rf /var/lib/containerd &&
+  #     sudo rm -r ~/.docker
+
+
+  # sudo groupdel docker &&
+  # sudo apt-get purge -y docker-engine docker docker.io docker-ce docker-ce-cli docker-compose-plugin &&
+  # sudo apt-get autoremove -y --purge docker-engine docker docker.io docker-ce docker-compose-plugin &&
