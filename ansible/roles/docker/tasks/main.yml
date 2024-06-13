@@ -1,0 +1,26 @@
+- name: Check if Docker is installed
+  ansible.builtin.command: which docker
+  register: docker_installed
+  changed_when: false
+  failed_when: false
+
+- name: Display a message if Docker is not installed
+  ansible.builtin.debug:
+    msg: "Docker is not installed on this system."
+  when: docker_installed.rc != 0
+
+- name: Download docker shell script from get.docker.com
+  when: docker_installed.rc != 0
+  ansible.builtin.shell: 
+    cmd: curl -fsSL https://get.docker.com -o get-docker.sh
+  args:
+    creates: get-docker.sh
+
+- name: Run get-docker.sh
+  when: docker_installed.rc != 0
+  ansible.builtin.shell: sh get-docker.sh
+
+- name: Setup usermod and groupadd docker
+  when: docker_installed.rc != 0
+  ansible.builtin.shell: 
+    cmd: sudo usermod -aG docker $USER && sudo rm get-docker.sh

@@ -73,5 +73,7 @@ if [[ -f "$DOTFILES_DIR/ansible/requirements.yml" ]]; then
 fi
 
 
-ansible-playbook -i ansible/hosts ansible/main.yml --ask-become-pass
+ansible-playbook -i ansible/hosts ansible/bootstrap.yml
+# ansible-playbook -i ansible/hosts ansible/bootstrap.yml --ask-become-pass
+# ansible-playbook ansible/bootstrap.yml
 echo "[dotfiles]: Running Ansible playbook"

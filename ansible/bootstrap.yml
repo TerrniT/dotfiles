@@ -1,0 +1,27 @@
+---
+- name: Bootstrap development environment
+  hosts: default
+  vars: 
+    ansible_user: terrnit
+  roles:
+    - role: manifest
+    - role: basic_utils
+    - role: profile
+
+    - role: lazygit
+    - role: lazydocker
+    - role: yazi
+
+    - role: tmux
+    - role: docker
+    # - role: fzf
+    # - role: gantsign.visual-studio-code
+    #   users:
+    #     # TODO: change this to be dynamic
+    #     - username: phelipe
+    #       visual_studio_code_extensions:
+    #         - "eamodio.gitlens"
+    #         - "kahole.magit"
+    #         - "PhilHindle.errorlens"
+    #         - "sleistner.vscode-fileutils"
+    #         - "vscodevim.vim"

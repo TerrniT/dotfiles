@@ -1,0 +1,20 @@
+manifest:
+  cmake:
+    url: https://github.com/Kitware/CMake/releases/download/v3.29.4/cmake-3.29.4-linux-{{ ansible_architecture }}.sh
+  firacode:
+    lock: true
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip
+  fzf:
+    url: https://github.com/junegunn/fzf.git
+    version: 3ee1fc203406debab432dbf3cb67f37ea7cb3d30
+  lazygit:
+    url: https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Linux_{{ ansible_architecture }}.tar.gz
+  lazydocker:
+    url: https://github.com/jesseduffield/lazydocker/releases/download/v0.23.3/lazydocker_0.23.3_Linux_{{ ansible_architecture }}.tar.gz
+  neovim:
+    url: https://github.com/neovim/neovim/releases/download/v0.10.0/nvim-linux64.tar.gz
+  tpm:
+    url: https://github.com/tmux-plugins/tpm
+    version: 99469c4a9b1ccf77fade25842dc7bafbc8ce9946
+  yazi:
+    url: https://github.com/sxyazi/yazi/releases/download/v0.2.5/yazi-{{ ansible_architecture }}-unknown-linux-musl.zip

@@ -38,32 +38,16 @@
     ansible.builtin.shell: 
       cmd: curl -fsSL https://get.docker.com -o get-docker.sh
     args:
-      chdir: temp/
       creates: get-docker.sh
 
   - name: Run get-docker.sh
     when: docker_installed.rc != 0
     ansible.builtin.shell: sh get-docker.sh
-    args:
-      chdir: temp/
 
   - name: Setup usermod and groupadd docker
     when: docker_installed.rc != 0
     ansible.builtin.shell: 
       cmd: sudo usermod -aG docker $USER && sudo rm get-docker.sh
-    args:
-      chdir: temp/
-
-  - name: Check if tmux is installed
-    ansible.builtin.command: which tmux
-    register: tmux_installed
-    changed_when: false
-    failed_when: false
-
-  - name: Display a message if Tmux is not installed
-    ansible.builtin.debug:
-      msg: "Tmux is not installed on this system."
-    when: tmux_installed.rc != 0
 
   - name: Installing tmux
     package:
@@ -71,16 +55,6 @@
       state: present
     tags: tmux
     when: tmux_installed.rc != 0
-
-  - name: Check if TMP is installed
-    stat:
-      path: /home/terrnit/.tmux/plugins/tpm
-    register: tmp_installed
-
-  - name: Display a message if TMP is not installed
-    ansible.builtin.debug:
-      msg: "TMP is not installed on this system."
-    when: not tmp_installed.stat.exists
 
   - name: Clone TPM repository
     git:

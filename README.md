@@ -1,5 +1,10 @@
 # terrnit's dotfiles
 
+## Install configuration (pip/ansible/gitconfig) and Ansible Playbook
+```sh
+. ./setup.sh
+``` 
+
 ## Blueprint
 ![image](https://github.com/TerrniTLLC/dotfiles/assets/104818206/8d980341-d284-4c77-b914-2dc84e480629)
 
