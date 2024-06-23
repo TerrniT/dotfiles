@@ -4,16 +4,20 @@
   vars: 
     ansible_user: terrnit
   roles:
+    - role: profile
     - role: manifest
     - role: basic_utils
-    - role: profile
+    - role: shell
+    - role: shell_utils
+    - role: go
 
     - role: lazygit
     - role: lazydocker
-    - role: yazi
 
     - role: tmux
     - role: docker
+    - role: rust
+    - role: nvim
     # - role: fzf
     # - role: gantsign.visual-studio-code
     #   users:

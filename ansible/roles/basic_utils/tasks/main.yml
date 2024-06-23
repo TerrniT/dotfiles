@@ -52,8 +52,10 @@
     home: "{{ getent_passwd[ansible_user].4 }}"
     user_id: "{{ getent_passwd[ansible_user].1 }}"
 
-    web_delay: 30
-    web_retries: 5
+    # web_delay: 15
+    # web_retries: 3
+    web_delay: 1
+    web_retries: 2
   tags:
     - skip_ansible_lint
 
@@ -63,3 +65,4 @@
       - "home: {{ home }}"
       - "user: {{ ansible_user }}"
       - "user_id: {{ user_id }}"
+      - "deb_arch: {{ deb_arch }}"

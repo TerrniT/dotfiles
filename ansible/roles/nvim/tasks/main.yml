@@ -1,0 +1,40 @@
+- name: Install build-essential packages for neovim
+  become: true
+  ansible.builtin.shell: |
+    sudo apt update &&
+    sudo apt-get install build-essential
+
+- name: Install Bob - neovim verstion manager
+  become: true
+  community.general.cargo:
+    name: bob-nvim
+    version: latest
+
+
+# - name: Install Bob - neovim verstion manager
+#   become: true
+#   community.general.cargo: |
+#     cargo install --git https://github.com/MordechaiHadad/bob.git &&
+#     bob erase &&
+#     bob install nightly &&
+#     bob use nightly
+
+
+# - name: Set up bash
+#   ansible.builtin.lineinfile:
+#     path: "{{ home }}/.bashrc"
+#     regexp: "source .*/{{ role_name }}/files"
+#     line: source {{ role_host_path }}/files/bash.sh
+#   # Disable automatic tmux open for bash
+#   when: false
+
+# sudo add-apt-repository ppa:neovim-ppa/unstable
+# sudo apt update
+# # c++, gcc 
+# sudo apt-get install build-essential 
+# sudo apt install neovim
+
+  # sudo add-apt-repository ppa:neovim-ppa/unstable &&
+  #   sudo apt update &&
+  #   sudo apt-get install build-essential &&
+  #   sudo apt install neovim &&

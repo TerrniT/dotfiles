@@ -1,0 +1,100 @@
+- name: Add fish gpg key
+  become: true
+  ansible.builtin.get_url:
+    url: "{{ shell_fish_key_url }}"
+    dest: "{{ apt_keys }}/fish.asc"
+    mode: "0o644"
+  retries: "{{ web_retries }}"
+  delay: "{{ web_delay }}"
+  register: shell_installed
+  until: shell_installed is not failed
+  # It looks like Ubuntu keyserver stores several different gpg keys
+  # Their actual key part is the same, but some metadata differs,
+  # thus ansible reports that this task has changed state
+  # and idempotence checks fail
+  # As a workaround we set `changed_when` to false
+  changed_when: false
+
+- name: Add fish repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb [arch={{ deb_arch }} signed-by={{ apt_keys }}/fish.asc] {{ shell_fish_repo }}
+
+- name: Add fish src repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb-src [arch={{ deb_arch }} signed-by={{ apt_keys }}/fish.asc] {{ shell_fish_repo }}
+
+- name: Install fish
+  become: true
+  ansible.builtin.package:
+    name: fish
+
+- name: Create fish functions directory
+  ansible.builtin.file:
+    path: "{{ home }}/.config/fish/functions"
+    state: directory
+    mode: "0o755"
+
+- name: Create fish conf.d directory
+  ansible.builtin.file:
+    path: "{{ home }}/.config/fish/conf.d"
+    state: directory
+    mode: "0o755"
+
+- name: Create fish completions directory
+  ansible.builtin.file:
+    path: "{{ home }}/.config/fish/completions"
+    state: directory
+    mode: "0o755"
+
+- name: Copy fish files to .config
+  copy: 
+    src: "{{ role_host_path }}/files/fish"
+    dest: "{{ home }}/.config/"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    remote_src: yes
+    mode: "0o755"
+  # ansible.builtin.file:
+  #   src: "{{ role_host_path }}/files/{{ role_name }}.fish"
+  #   dest: "{{ home }}/.config/fish/conf.d/{{ role_name }}.fish"
+  #   state: link
+
+- name: Change user shell to fish
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    shell: /usr/bin/fish
+
+- name: Install bash-completion
+  become: true
+  ansible.builtin.package:
+    name: bash-completion
+
+- name: Create bash completions directory
+  ansible.builtin.file:
+    path: "{{ home }}/.local/share/bash-completion/completions"
+    state: directory
+    mode: "0o755"
+
+- name: Set up bash
+  ansible.builtin.lineinfile:
+    path: "{{ home }}/.bashrc"
+    regexp: "source .*/{{ role_name }}/files"
+    line: source {{ role_host_path }}/files/bash.sh
+    create: true
+    mode: "0o644"
+
+# - name: Create symlinks to fish functions
+#   ansible.builtin.file:
+#     src: "{{ role_host_path }}/files/functions/{{ item | basename }}"
+#     dest: "{{ home }}/.config/fish/functions/{{ item | basename }}"
+#     state: link
+#   loop: "{{ lookup('fileglob', '{{ role_path }}/files/functions/*', wantlist=True) }}"
+
+- name: Create ~/.local/bin directory
+  ansible.builtin.file:
+    path: "{{ home }}/.local/bin"
+    state: directory
+    mode: "0o755"
