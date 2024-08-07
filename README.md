@@ -1,5 +1,7 @@
 # terrnit's dotfiles
 
+WIP
+
 ## Install configuration (pip/ansible/gitconfig) and Ansible Playbook
 ```sh
 . ./setup.sh
@@ -16,8 +18,6 @@
   - Linux
     1. Nvim (Lazyvim)
     2. Tmux
-    3. Helix
-    4. Zelliji
   - Windows
     1. Powershell
     2. Wezterm
@@ -78,15 +78,6 @@ All plugins [plugins/](.config/nvim/lua/plugins).
 - `<C-j>` LSP diagnostic next, `J` LSP diagnostic prev
 - `<C-k>` LSP signature help
 
-## [Zed](https://github.com/zed-industries/zed)
-
-Settings and Keymaps
-
-```bash
-ln -s ~/yourpath/.config/zed/settings.json ~/.config/zed
-ln -s ~/yourpath/.config/zed/keymap.json ~/.config/zed
-```
-
 ## Shell
 
 - [Fish shell](https://fishshell.com/)
@@ -99,19 +90,9 @@ ln -s ~/yourpath/.config/zed/keymap.json ~/.config/zed
 - [ghq](https://github.com/2nthony/ghq) - GitHub repositories manager
 - [nvm](https://github.com/nvm-sh/nvm) - Node.js version manager
   - [nvm.fish](https://github.com/jorgebucaran/nvm.fish) - Fish nvm
-- [zellij](https://github.com/zellij-org/zellij) - Workspace management, tmux alternative
 - [vitesse.iterm](https://github.com/2nthony/vitesse.iterm) - Vitesse theme for iTerm2
 
 ## Troubleshootings
-
-### Modifier keys(`<c-*>`, `<a-*>`) not working in tmux
-
-#### iTerm2
-
-Details from: https://github.com/tmux/tmux/wiki/Modifier-Keys#extended-keys
-
-- [x] `<c-*>`: `Preferences` -> `Profiles` -> `Keys` -> `Report modifiers using CSI u`
-- [x] `<a-*>`: `Preferences` -> `Profiles` -> `Keys` -> `Left Option Key: Meta/Esc+`
 
 ## Credit
 
